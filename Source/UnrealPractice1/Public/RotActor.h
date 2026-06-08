@@ -15,6 +15,7 @@ public:
 protected:
 	USceneComponent* SceneRoot;
 	UStaticMeshComponent* StaticMeshComp;
+	float RotationSpeed;
 
 	virtual void BeginPlay() override;
 

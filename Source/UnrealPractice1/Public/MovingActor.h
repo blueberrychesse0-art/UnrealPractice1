@@ -17,6 +17,10 @@ public:
 protected:
 	USceneComponent* SceneRoot;
 	UStaticMeshComponent* StaticMeshComp;
+	
+	FVector StartLocation;
+	float MoveSpeed;
+	float MaxRange;
 
 	virtual void BeginPlay() override;
 

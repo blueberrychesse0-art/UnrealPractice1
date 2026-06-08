@@ -9,6 +9,7 @@ ARotActor::ARotActor()
 	StaticMeshComp->SetupAttachment(SceneRoot);
 
 	PrimaryActorTick.bCanEverTick = true;
+	RotationSpeed = 90.0f;
 }
 
 void ARotActor::BeginPlay()
@@ -19,5 +20,9 @@ void ARotActor::BeginPlay()
 void ARotActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (FMath::IsNearlyZero(RotationSpeed))
+	{
+		AddActorLocalRotation(FRotator(0.0f, RotationSpeed * DeltaTime, 0.0f));
+	}
 }
 
