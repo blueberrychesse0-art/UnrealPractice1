@@ -13,8 +13,11 @@ public:
 	ARotActor();
 
 protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actor|Components")
 	USceneComponent* SceneRoot;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor|Components")
 	UStaticMeshComponent* StaticMeshComp;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Actor|Properties")
 	float RotationSpeed;
 
 	virtual void BeginPlay() override;
