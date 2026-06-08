@@ -12,15 +12,15 @@ class UNREALPRACTICE1_API AMovingActor : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
 	AMovingActor();
 
 protected:
-	// Called when the game starts or when spawned
+	USceneComponent* SceneRoot;
+	UStaticMeshComponent* StaticMeshComp;
+
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 };
