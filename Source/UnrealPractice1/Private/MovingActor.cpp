@@ -10,8 +10,9 @@ AMovingActor::AMovingActor()
 
 	PrimaryActorTick.bCanEverTick = true;
 	StartLocation = GetActorLocation();
-	MoveSpeed = 100.0f;
-	MaxRange = 1000.0f;
+	MoveSpeed = 500.0f;
+	MaxRange = 2000.0f;
+	dir = true;
 }
 
 void AMovingActor::BeginPlay()
@@ -26,10 +27,15 @@ void AMovingActor::Tick(float DeltaTime)
 	if (!FMath::IsNearlyZero(MoveSpeed))
 	{
 		float Distance = FVector::Dist(GetActorLocation(), StartLocation);
-		AddActorWorldOffset(FVector(Distance, 0.0f, 0.0f));
-		if (Distance > MaxRange)
+		AddActorWorldOffset(FVector(MoveSpeed * DeltaTime, 0.0f, 0.0f));
+		if (Distance > MaxRange && dir == true)
 		{
 			MoveSpeed *= -1.0f;
+			dir = false;
+		}
+		if (Distance <= MaxRange)
+		{
+			dir = true;
 		}
 	}
 }
