@@ -15,7 +15,7 @@ ARotActor::ARotActor()
 void ARotActor::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &ARotActor::MoveRandom, 2.0f, true, 5.0f);
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &ARotActor::MoveRandom, FMath::FRandRange(1.5f, 4.0f), true, 5.0f);
 }
 
 void ARotActor::Tick(float DeltaTime)

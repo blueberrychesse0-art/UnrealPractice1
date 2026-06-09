@@ -22,6 +22,8 @@ protected:
 	
 	FVector StartLocation;
 	bool dir;
+	FTimerHandle MemberTimerHandle;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor|Properties")
 	float MoveSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor|Properties")
@@ -31,5 +33,5 @@ protected:
 
 public:	
 	virtual void Tick(float DeltaTime) override;
-
+	void ChangeActive();
 };

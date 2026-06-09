@@ -18,6 +18,9 @@ AMovingActor::AMovingActor()
 void AMovingActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AMovingActor::ChangeActive, 
+		FMath::FRandRange(2.0f, 5.0f), true, FMath::FRandRange(0.0f, 10.0f));
 }
 
 void AMovingActor::Tick(float DeltaTime)
@@ -38,5 +41,20 @@ void AMovingActor::Tick(float DeltaTime)
 			dir = true;
 		}
 	}
+}
+
+void AMovingActor::ChangeActive()
+{
+	if (IsHidden())
+	{
+		SetActorHiddenInGame(false);
+		SetActorEnableCollision(true);
+	}
+	else
+	{
+		SetActorHiddenInGame(true);
+		SetActorEnableCollision(false);
+	}
+	
 }
 
