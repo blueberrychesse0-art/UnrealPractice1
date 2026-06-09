@@ -15,6 +15,7 @@ ARotActor::ARotActor()
 void ARotActor::BeginPlay()
 {
 	Super::BeginPlay();
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &ARotActor::MoveRandom, 2.0f, true, 5.0f);
 }
 
 void ARotActor::Tick(float DeltaTime)
@@ -25,5 +26,14 @@ void ARotActor::Tick(float DeltaTime)
 	{
 		AddActorLocalRotation(FRotator(0.0f, RotationSpeed * DeltaTime, 0.0f));
 	}
+}
+
+void ARotActor::MoveRandom()
+{
+	FVector offset{ FMath::FRandRange(0.0f, 200.0f), 
+		FMath::FRandRange(0.0f, 200.0f), 
+		0.0f };
+
+	AddActorWorldOffset(offset);
 }
 

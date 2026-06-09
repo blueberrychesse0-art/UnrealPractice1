@@ -20,9 +20,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor|Properties")
 	float RotationSpeed;
 
+	FTimerHandle MemberTimerHandle;
+
 	virtual void BeginPlay() override;
 
 public:
 	virtual void Tick(float DeltaTime) override;
-
+	void MoveRandom();
 };
