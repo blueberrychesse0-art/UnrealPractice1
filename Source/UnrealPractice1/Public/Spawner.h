@@ -26,6 +26,8 @@ protected:
 public:
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintCallable)
 	void SpawnActorRandomly();
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnActor();
 };

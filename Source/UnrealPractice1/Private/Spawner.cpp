@@ -13,10 +13,8 @@ void ASpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	for(int i = 0; i < 5; ++i)
-		SpawnActorRandomly();
-	/*GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &ASpawner::SpawnActorRandomly,
-		5.0f, true);*/
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &ASpawner::SpawnActor,
+		0.1f, false);
 }
 
 void ASpawner::Tick(float DeltaTime)
@@ -26,15 +24,34 @@ void ASpawner::Tick(float DeltaTime)
 
 void ASpawner::SpawnActorRandomly()
 {
-	if (!SpawnClass)
+	if (SpawnClass == nullptr)
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s SpawnClass is not exit"), *GetName());
 		return;
 	}
+	if (SpawnClass->IsChildOf(ASpawner::StaticClass()))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Cannot spawn SpawnerClass"));
+		return;
+	}
+	if (GetWorld() == nullptr)
+	{
+		UE_LOG(LogTemp, Error, TEXT("World is not valid"));
+		return;
+	}
+
 	FVector WorldLocation = BoxComp->Bounds.Origin;
 	FVector WorldExtent = BoxComp->Bounds.BoxExtent;
 
 	FVector RandomLocation = UKismetMathLibrary::RandomPointInBoundingBox(WorldLocation, WorldExtent);
 
 	GetWorld()->SpawnActor<AActor>(SpawnClass, RandomLocation, GetActorRotation());
+}
+
+void ASpawner::SpawnActor()
+{
+	for (int i = 0; i < 5; ++i)
+	{
+		SpawnActorRandomly();
+	}
 }
