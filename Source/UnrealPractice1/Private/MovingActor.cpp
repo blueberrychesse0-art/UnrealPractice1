@@ -55,6 +55,5 @@ void AMovingActor::ChangeActive()
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);
 	}
-	
 }
 

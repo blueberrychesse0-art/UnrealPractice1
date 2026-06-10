@@ -30,8 +30,8 @@ void ARotActor::Tick(float DeltaTime)
 
 void ARotActor::MoveRandom()
 {
-	FVector offset{ FMath::FRandRange(0.0f, 200.0f), 
-		FMath::FRandRange(0.0f, 200.0f), 
+	FVector offset{ FMath::FRandRange(-100.0f, 100.0f), 
+		FMath::FRandRange(-100.0f, 100.0f), 
 		0.0f };
 
 	AddActorWorldOffset(offset);
